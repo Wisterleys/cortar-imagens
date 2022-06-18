@@ -2,7 +2,7 @@ body{
     padding: 0px;
     margin: 0px;
 }
-.container{
+.block-main{
     padding: 0px;
     margin: 0px;
     width: 100%;
@@ -15,24 +15,32 @@ body{
     grid-template-rows: 50px 1fr 30px;
     grid-template-columns: 150px 1fr;
 }
-.container header{
+.block-main header{
     grid-area: head;
-    background-color: blue;
+    /* background-color: blue; */
 }
-.container main{
+.block-main main{
     grid-area: m;
-    background-color: brown;
+    /* background-color: brown; */
 }
-.container footer{
+.block-main footer{
     grid-area: foo;
-    background-color: burlywood;
+    /* background-color: burlywood; */
 }
-.container aside{
+.block-main aside{
     grid-area: n;
-    background-color: black;
+    /* background-color: black; */
+}
+.block-main aside button{
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+main .tela{
+    width: 100%;
 }
 @media  (max-width:600px) {
-    .container{
+    .block-main{
         grid-template-areas: "head head head"
                               "m m m"
                               "foo foo foo"
