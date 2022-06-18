@@ -13,18 +13,20 @@
     </header>
     <main>
         <div class="tela">
-            <img src="" alt="" width="100%">
+            <img src="" alt="" width="100%" id="imagem-view">
         </div>
     </main>
     <aside>
-        <button>Buscar imagem</button>
-        <button>Cortar iamgem</button>
-        <button>Download da imagem</button>
+        <button id="click-search">Buscar imagem</button>
+        <button id="click-cut">Cortar iamgem</button>
+        <button id="click-download">Download da imagem</button>
+        <input type="file" hidden accept="image/*" id="file-image" id="change-file">
     </aside>
     <footer>
 
     </footer>
 </div>
-    <script src="dist/index.js"></script>
+<script src="dist/models/inputFiles.js"></script>
+<script src="dist/index.js"></script>
 </body>
 </html>
