@@ -1,0 +1,19 @@
+{
+  "name": "cortar-imagens",
+  "version": "1.0.0",
+  "description": "Biblioteca para cortar imagens",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Wisterleys/cortar-imagens.git"
+  },
+  "author": "Wisterleys Sousa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wisterleys/cortar-imagens/issues"
+  },
+  "homepage": "https://github.com/Wisterleys/cortar-imagens#readme"
+}
