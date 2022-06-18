@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var file_image = document.querySelector('#file-image');
     var imagem_view = document.querySelector('#imagem-view');
     var click_search = document.querySelector('#click-search');
-    var change_file = document.querySelector('#change-file');
     function search(e) {
         file_image.click();
     }
@@ -17,5 +16,5 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
     click_search.addEventListener('click', search);
-    change_file.addEventListener('change', changeFile);
+    file_image.addEventListener('change', changeFile);
 });

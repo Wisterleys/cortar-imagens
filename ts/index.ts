@@ -2,10 +2,9 @@
 
 document.addEventListener('DOMContentLoaded',function(){
 
-    let file_image:any = document.querySelector('#file-image');
-    let imagem_view:any = document.querySelector('#imagem-view');
-    let click_search:any = document.querySelector('#click-search');
-    let change_file:any = document.querySelector('#change-file');
+    let file_image:HTMLImageElement = document.querySelector('#file-image') as HTMLImageElement;
+    let imagem_view:HTMLImageElement = document.querySelector('#imagem-view')as HTMLImageElement;
+    let click_search:HTMLButtonElement = document.querySelector('#click-search')as HTMLButtonElement;
     function search(e:Event):void{
         file_image.click();
     }
@@ -14,11 +13,11 @@ document.addEventListener('DOMContentLoaded',function(){
         const read = new FileReader();
         read.readAsDataURL(input.getFiles()[0])
         read.onload=e=>{
-            imagem_view.src= read.result
+            imagem_view.src= <string>read.result
         } 
     }
 
 
     click_search.addEventListener('click',search);
-    change_file.addEventListener('change',changeFile);
+    file_image.addEventListener('change',changeFile);
 })
