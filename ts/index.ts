@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded',function(){
 
+    let el_selection:HTMLDivElement = document.querySelector('#selection') as HTMLDivElement;
     let file_image:HTMLImageElement = document.querySelector('#file-image') as HTMLImageElement;
     let imagem_view:HTMLImageElement = document.querySelector('#imagem-view')as HTMLImageElement;
     let click_search:HTMLButtonElement = document.querySelector('#click-search')as HTMLButtonElement;
@@ -14,6 +15,7 @@ document.addEventListener('DOMContentLoaded',function(){
         read.readAsDataURL(input.getFiles()[0])
         read.onload=e=>{
             imagem_view.src= <string>read.result
+            new CutImages(el_selection)
         } 
     }
 
