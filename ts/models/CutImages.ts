@@ -1,12 +1,14 @@
 class CutImages{
-    private toggle:boolean=false;
+    private toggle:boolean;
     private mouseStartY:string;//Y relativo
     private startX:string;//X relativo
     private ab_endX:number;//X 
+    private ab_endY:number;//X 
     private selection:HTMLElement;
     private el_image:HTMLDivElement
     private image_data:DOMRect;
     constructor(el:HTMLDivElement){
+        this.toggle=false
         this.el_image=el;
         this.el_image.style.position='relative';
         this.el_image.style.width='100%';
@@ -20,16 +22,24 @@ class CutImages{
                 height:100px;
                 top:0px;
                 left:0px;
+                visibility:hidden
                 `
             }
         ]});
         this.ab_endX=0;
+        this.ab_endY=0;
         this.image_data = el.getBoundingClientRect();
         this.startX='el.clientX';
         this.mouseStartY='el.clientY';
+        //Events
+        this.el_image.addEventListener('mousedown',this.mousedown)
+        this.el_image.addEventListener('mouseover',this.mouseover)
+        this.el_image.addEventListener('mousemove',this.mousemove)
+        this.el_image.addEventListener('mouseup',this.mouseup)
     }
     public mousedown(e:MouseEvent){
-        
+        this.toggle=true
+        console.log("down")
     }
     public mouseover(e:MouseEvent){
         (<HTMLDivElement>e.target).style.cursor="crosshair"
@@ -38,21 +48,19 @@ class CutImages{
         if(this.toggle){
             const {clientX,clientY}=e
             this.ab_endX=clientX;
-            ab_endY=clientY;
+            this.ab_endY=clientY;
             
-            (<HTMLDivElement>e.target).style.visibility="visible";
-            (<HTMLDivElement>e.target).style.top=this.mouseStartY+'px';
-            (<HTMLDivElement>e.target).style.left=this.startX+"px";
-            (<HTMLDivElement>e.target).style.width=(this.ab_endX-parseInt(this.startX))+"px";
-            (<HTMLDivElement>e.target).style.height=(this.ab_endY-this.mouseStartY)+"px";
+           this.selection.hidden=false;
+           this.selection.style.top=this.mouseStartY+'px';
+           this.selection.style.left=this.startX+"px";
+           this.selection.style.width=(this.ab_endX-parseInt(this.startX))+"px";
+           this.selection.style.height=(this.ab_endY-parseInt(this.mouseStartY))+"px";
         }
     }
     public mouseup(e:any){
+        console.log(e.target)
             this.toggle=false
-            relativeEndX = e.layerX;
-            relativeEndY = e.layerY;
-            (<HTMLDivElement>e.target).style.visibility="hidden";
-            //crop()
+            this.selection.style.visibility='visible';
     }
     
     private addEl(obj:CreateElementObject):HTMLElement{

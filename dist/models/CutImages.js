@@ -7,15 +7,23 @@ var CutImages = /** @class */ (function () {
         this.el_image.style.width = '100%';
         this.selection = this.addEl({ place: el, tag: 'div', attrs: [
                 {
-                    style: "\n                position:absolute;\n                border-style:dashed;\n                border-color:red;\n                width:100px;\n                height:100px;\n                top:0px;\n                left:0px;\n                "
+                    style: "\n                position:absolute;\n                border-style:dashed;\n                border-color:red;\n                width:100px;\n                height:100px;\n                top:0px;\n                left:0px;\n                visibility:hidden\n                "
                 }
             ] });
         this.ab_endX = 0;
+        this.ab_endY = 0;
         this.image_data = el.getBoundingClientRect();
         this.startX = 'el.clientX';
         this.mouseStartY = 'el.clientY';
+        //Events
+        this.el_image.addEventListener('mousedown', this.mousedown);
+        this.el_image.addEventListener('mouseover', this.mouseover);
+        this.el_image.addEventListener('mousemove', this.mousemove);
+        this.el_image.addEventListener('mouseup', this.mouseup);
     }
     CutImages.prototype.mousedown = function (e) {
+        this.toggle = true;
+        console.log("down");
     };
     CutImages.prototype.mouseover = function (e) {
         e.target.style.cursor = "crosshair";
@@ -24,20 +32,18 @@ var CutImages = /** @class */ (function () {
         if (this.toggle) {
             var clientX = e.clientX, clientY = e.clientY;
             this.ab_endX = clientX;
-            ab_endY = clientY;
-            e.target.style.visibility = "visible";
-            e.target.style.top = this.mouseStartY + 'px';
-            e.target.style.left = this.startX + "px";
-            e.target.style.width = (this.ab_endX - parseInt(this.startX)) + "px";
-            e.target.style.height = (this.ab_endY - this.mouseStartY) + "px";
+            this.ab_endY = clientY;
+            this.selection.hidden = false;
+            this.selection.style.top = this.mouseStartY + 'px';
+            this.selection.style.left = this.startX + "px";
+            this.selection.style.width = (this.ab_endX - parseInt(this.startX)) + "px";
+            this.selection.style.height = (this.ab_endY - parseInt(this.mouseStartY)) + "px";
         }
     };
     CutImages.prototype.mouseup = function (e) {
+        console.log(e.target);
         this.toggle = false;
-        relativeEndX = e.layerX;
-        relativeEndY = e.layerY;
-        e.target.style.visibility = "hidden";
-        //crop()
+        this.selection.style.visibility = 'visible';
     };
     CutImages.prototype.addEl = function (obj) {
         var _a;
